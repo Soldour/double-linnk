@@ -1,0 +1,3 @@
+﻿  methos.c
+C:\Users\Solomon\Videos\projects\c\DoubleLink\double\double\methos.c(48): warning C4716: 'createLink': must return a value
+  double.vcxproj -> C:\Users\Solomon\Videos\projects\c\DoubleLink\double\Debug\double.exe
