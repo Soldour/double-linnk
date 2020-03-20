@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include<stdbool.h> 
 
 struct node
 {
@@ -145,7 +146,7 @@ struct node* insertElement(int value, int bound)
 					track = track->next;
 
 				}
-
+                printf("A node is added at  index %d: \n", count-1);
 				
 			}
 			else {
@@ -170,6 +171,70 @@ struct node* begning(int value)
 	new_node->next = head;
 	head->left = new_node;
 	new_node->left = NULL;
+    printf("\nEement is added at the head: \n");
 	return new_node;
+
+}
+
+
+
+void deletAllElement(int key)
+{
+    bool  exist;
+
+    struct node * follow=head;
+
+    int count = 0;
+
+    while (head != NULL && head->data == key)
+    {
+       //3 follow = head;
+        head = head->next;
+        head->left = NULL;
+        free(follow);
+        printf("\nThe node at the head is deleted! \n");
+        count++;
+    }
+
+    follow = NULL;
+   // current = head;
+
+
+    while (current != NULL )
+    {
+
+      exist = current->data == key;
+
+        if (current->data == key)
+
+        {
+
+            while (current->data == key)
+            {
+                count++;
+            }
+            if (follow != NULL) {
+
+                follow->next = current->next;
+                current->next->left = follow;
+            }
+
+
+            free(current);
+            current = follow->next;
+
+            printf("\n the node at index %d\n", count);
+            printList();
+        }
+        else
+        {
+
+            follow = current;
+            current = current->next;
+            //printf("\nthe element does not belong to this node\n");
+           // break;
+
+        }
+    }
 
 }
