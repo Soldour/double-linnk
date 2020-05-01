@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-#include<stdbool.h> 
+#include <stdbool.h> 
 
 struct node
 {
@@ -13,28 +13,33 @@ struct node
 
 struct node createLink(int n)
 {
-
+    int m = 1;
+    m++;
+    int value = rand();
+ 
     //  struct node* current;
+
     struct node* follow;
+    if (m == 1) {
 
-    int value=rand();
-    int i;
-    printf("Enter the valu at the head: ");
-    scanf_s("%d", &value);
-    current = (struct node*)malloc(sizeof(struct node));
-    current->data = value;
-    current->next = NULL;
-    current->left = NULL;
+        printf("Enter the valu at the head: ");
+        scanf_s("%d", &value);
+        current = (struct node*)malloc(sizeof(struct node));
+        current->data = value;
+        current->next = NULL;
+        current->left = NULL;
 
-    head = current;
-    follow = head;
-    for (i = 1; i < n; i++)
-    {
+        head = current;
+        follow = head;
 
-		value = rand()%100;
 
-       // printf("Enter the valu at index %d: ", i);
-       // scanf_s("%d", &value);
+    }
+    else if (m < n) {
+
+        value = rand() % 100;
+
+        // printf("Enter the valu at index %d: ", i);
+        // scanf_s("%d", &value);
         current = (struct node*)malloc(sizeof(struct node));
         current->data = value;
         current->next = NULL;
@@ -43,11 +48,12 @@ struct node createLink(int n)
         follow->next = current;
         current->left = follow;
         follow = follow->next;
-
-
-
     }
+    else{
+        createLink(n);
 
+}
+  
 
 }
 
@@ -55,7 +61,7 @@ void printList()
 {
 
     int key;
-    printf("\nchoose a key to traverse the link: ONE for backward and TWO forward:");
+    printf("\nChoose a key to traverse the link: ONE for backward and TWO forward:");
     scanf_s("%d", &key);
     if (key == 1) {
         struct node* follow = current;
@@ -81,6 +87,14 @@ void printList()
     else {
         printf("\n Unknown input:\n");
     }
+}
+
+void printRcursion() {
+
+
+
+
+
 }
 
 
@@ -119,12 +133,12 @@ struct node* insertElement(int value, int bound)
 		{
 
 			if (inserting_index <= bound && inserting_index > 0) {
-				struct node* new_node;                   /////////\\\\\\\\\\\\\\\\\\//////\\\\\\\\\\\\\\\\\\\\////////////////////
-				struct node* track = head;              // create two same node that will track the head node ( track and follow)
-				                                        // new node will take the data feild of value and will pint to null  
-				new_node = malloc(sizeof(struct node)); // the count will start form 2 because the starting node functionis 
-				new_node->data = value;                 //different
-				new_node->next = NULL;                  //
+				struct node* new_node;                       /////////\\\\\\\\\\\\\\\\\\//////\\\\\\\\\\\\\\\\\\\\//////////////////////
+				struct node* track = head;                  // create two same node that will track the head node ( track and follow)//
+				                                           // new node will take the data feild of value and will pint to null      //
+				new_node = malloc(sizeof(struct node));   // the count will start form 2 because the starting node functionis      //
+				new_node->data = value;                  //different                                                              //
+				new_node->next = NULL;                  ///////////////////////////////////////////////////////////////////////////
 				new_node->left = NULL;
 				
 				int count = 2;
@@ -163,6 +177,8 @@ struct node* insertElement(int value, int bound)
 
 	printList();
 }
+
+
 struct node* begning(int value)
 {
 	struct node* new_node;
@@ -178,10 +194,14 @@ struct node* begning(int value)
 
 
 
-void deletAllElement(int key)
+void deletAllElement()
 {
+    int key;
+    printf("input the key of to be deleted :");
+    scanf_s("%d", &key);
+  
     bool  exist;
-
+   
     struct node * follow=head;
 
     int count = 0;
@@ -197,7 +217,7 @@ void deletAllElement(int key)
     }
 
     follow = NULL;
-   // current = head;
+    current = head;
 
 
     while (current != NULL )
